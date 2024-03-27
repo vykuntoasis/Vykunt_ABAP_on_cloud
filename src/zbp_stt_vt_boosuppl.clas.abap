@@ -1,0 +1,5 @@
+CLASS zbp_stt_vt_boosuppl DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zstt_vt_travel.
+ENDCLASS.
+
+CLASS zbp_stt_vt_boosuppl IMPLEMENTATION.
+ENDCLASS.

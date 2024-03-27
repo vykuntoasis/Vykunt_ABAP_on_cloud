@@ -1,0 +1,94 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo:{
+    typeName: 'Travel',
+    typeNamePlural: 'Travels',
+    title: { value: 'TravelId' },
+    description: { value: 'CustomerName' }
+ }
+annotate view ZSTT_V_U_TRAVEL
+    with 
+{
+ @UI.facet: [
+                { 
+                    purpose: #HEADER,
+                    type: #DATAPOINT_REFERENCE,
+                    label: 'Flight Ticket Price',
+                    position: 10,
+                    targetQualifier: 'price_data'
+                },
+                { 
+                    purpose: #HEADER,
+                    type: #DATAPOINT_REFERENCE,
+                    label: 'Status',
+                    position: 20,
+                    targetQualifier: 'status'
+                },
+                { 
+                    purpose: #STANDARD,
+                    type: #COLLECTION,
+                    position: 10,
+                    id: 'super',
+                    label: 'Additional Details'                
+                },
+                { 
+                    purpose: #STANDARD,
+                    type: #IDENTIFICATION_REFERENCE,
+                    label: 'More Info',
+                    position: 10,
+                    parentId: 'super'
+                },
+                { 
+                    purpose: #STANDARD,
+                    type: #FIELDGROUP_REFERENCE,
+                    label: 'Price data',
+                    position: 20,
+                    parentId: 'super',
+                    targetQualifier: 'pricing'
+                },{ 
+                    purpose: #STANDARD,
+                    type: #FIELDGROUP_REFERENCE,
+                    label: 'Dates',
+                    position: 30,
+                    parentId: 'super',
+                    targetQualifier: 'dates'
+                }
+               ]
+    @UI.selectionField: [{ position: 10 }]
+    @UI.lineItem: [{ position: 10 },
+    { type: #FOR_ACTION, label: 'Set Status',
+    dataAction: 'set_booked_status' }]
+    @UI.identification: [{ position: 10 },
+    { type: #FOR_ACTION, label: 'Set Status to Booked',
+    dataAction: 'set_booked_status' }]
+    TravelId;
+    @UI.selectionField: [{ position: 20 }]
+    @UI.lineItem: [{ position: 20 }]
+    @UI.identification: [{ position: 20 }]
+    AgencyId;
+    @UI.selectionField: [{ position: 30 }]
+    @UI.lineItem: [{ position: 30 }]
+    @UI.identification: [{ position: 30 }]
+    CustomerId;
+    @UI.lineItem: [{ position: 40 }]
+    @UI.fieldGroup: [{ qualifier: 'dates', label: 'Start Date', position: 10 }]
+    BeginDate;
+    @UI.fieldGroup: [{ qualifier: 'dates', label: 'End Date', position: 20 }]
+    EndDate;
+    @UI.fieldGroup: [{ qualifier: 'pricing', label: 'Booking Fee', position: 10 }]
+    BookingFee;
+    @UI.selectionField: [{ position: 40 }]
+    @UI.lineItem: [{ position: 50 }]
+    @UI.dataPoint: { qualifier: 'price_data', title: 'Flight Price' }
+    @UI.fieldGroup: [{ qualifier: 'pricing', label: 'Total Price', position: 20 }]
+    TotalPrice;
+    @UI.fieldGroup: [{ qualifier: 'pricing', label: 'Currency Code', position: 30 }]
+    CurrencyCode;
+    @UI.identification: [{ position: 40 }]
+    Memo;
+    @UI.selectionField: [{ position: 50 }]
+    @UI.lineItem: [{ position: 70 , importance: #HIGH }]
+    @UI.fieldGroup: [{ qualifier: 'dates', label: 'Status', position: 30 }]
+    @UI.dataPoint: { qualifier: 'status', title: 'Status' }
+    Status;
+      
+}

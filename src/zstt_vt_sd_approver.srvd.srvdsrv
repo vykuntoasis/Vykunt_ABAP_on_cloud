@@ -1,0 +1,11 @@
+@EndUserText.label: 'service definti for v2'
+define service ZSTT_VT_SD_APPROVER {
+  expose ZSTT_VT_TRAVEL_APPROVER  as Travel;
+  expose ZSTT_VT_BOOKING_APPROVER as Booking;
+  expose /DMO/I_Agency            as Agency;
+  expose /DMO/I_Customer          as Customer;
+  expose /DMO/I_Carrier           as Carrier;
+  expose /DMO/I_Connection        as Connection;
+  expose /DMO/I_Overall_Status_VH as OverallStatus;
+  expose /DMO/I_Booking_Status_VH as BookingStatus;
+}

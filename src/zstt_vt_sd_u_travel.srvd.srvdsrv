@@ -1,0 +1,9 @@
+@EndUserText.label: 'service definti for unmanaged'
+define service ZSTT_VT_SD_U_TRAVEl {
+  expose ZSTT_V_U_TRAVEL         as Travel;
+  expose ZSTT_VT_U_AGENCY        as Agency;
+  expose ZSTT_VT_U_CUSTOMER      as Customer;
+  expose I_Country               as Country;
+  expose I_Currency              as Currency;
+  expose /DMO/I_Travel_Status_VH as Status;
+}

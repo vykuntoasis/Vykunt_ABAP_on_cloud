@@ -1,0 +1,39 @@
+@Metadata.layer: #CORE
+@UI.headerInfo:{ 
+    typeName: 'Attachment',
+    typeNamePlural: 'Attachments',
+    title: { value: 'Id' },
+    description: { value: 'Memo' }
+}
+annotate view ZSTT_VT_ATTACH_PROCESSOR
+    with 
+{
+    @UI.facet: [
+                { 
+                    purpose: #STANDARD,
+                    type: #IDENTIFICATION_REFERENCE,
+                    label: 'Attachment Info',
+                    position: 10
+                 }
+    ]
+    @UI.lineItem: [{ position: 10 }]
+    @UI.identification: [{ position: 10 }]
+    Id;
+    @UI.lineItem: [{ position: 20 }]
+    @UI.identification: [{ position: 20 }]
+    Memo;
+    @UI.lineItem: [{ position: 30 }]
+    @UI.identification: [{ position: 30 }]
+    Attachment;
+    @UI.lineItem: [{ position: 40 }]
+    @UI.identification: [{ position: 40 }]
+    Filename;
+    @UI.lineItem: [{ position: 50 }]
+    @UI.identification: [{ position: 50 }]
+    Filetype;
+    @UI.identification: [{ position: 60 }]
+    LocalCreatedAt;
+    @UI.identification: [{ position: 70 }]
+    LocalCreatedBy;
+    
+}

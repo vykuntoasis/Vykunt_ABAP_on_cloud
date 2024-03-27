@@ -1,0 +1,27 @@
+ projection;
+strict ( 2 );
+use draft;
+
+define behavior for ZSTT_VT_TRAVEL_APPROVER alias travel
+{
+
+  use update;
+//  use delete;
+
+ field (readonly) TravelId,AgencyId,CustomerId,BeginDate,EndDate,TotalPrice,Description,CurrencyCode;
+
+  use action acceptTravel;
+  use action rejectTravel;
+ use action Edit;
+  use action Resume;
+  use action Activate;
+  use action Discard;
+  use action Prepare;
+
+  use association _Booking {  }
+}
+
+define behavior for ZSTT_VT_BOOKING_APPROVER alias booking
+{
+ use association _Travel { with draft; }
+}

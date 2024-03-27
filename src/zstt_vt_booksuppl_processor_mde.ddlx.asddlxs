@@ -1,0 +1,29 @@
+@Metadata.layer: #CORE
+@UI.headerInfo:{ typeName: 'Supplement',typeNamePlural: 'Supplements' ,
+  title: { value: 'BookingSupplementId' },description : { value: 'Price' }}
+annotate view ZSTT_VT_BOOKSUPPL_PROCESSOR
+    with 
+{
+    @UI.facet: [{ purpose: #STANDARD,
+       type: #IDENTIFICATION_REFERENCE,
+       position: 10,
+       label: 'Supplement Info'
+     }]
+    
+    @UI.lineItem: [{ position: 10 }]
+    @UI.identification: [{ position: 10 }]
+    BookingSupplementId;
+    @UI.lineItem: [{ position: 20 }]
+    @UI.identification: [{ position: 20 }]
+    SupplementId;
+    @UI.lineItem: [{ position: 30 }]
+    @UI.identification: [{ position: 30 }]
+    Price;
+    @UI.lineItem: [{ position: 40 }]
+    @UI.identification: [{ position: 40 }]
+    CurrencyCode;
+    @UI.identification: [{ position: 50 }]
+    LastChangedAt;
+    
+    
+}

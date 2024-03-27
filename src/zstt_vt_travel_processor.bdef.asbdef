@@ -1,0 +1,45 @@
+projection;
+strict ( 2 );
+use draft;
+define behavior for ZSTT_VT_TRAVEL_PROCESSOR alias Travel
+implementation in class zbp_stt_vt_travel_proc unique
+{
+  use create(augment,precheck);
+  use update(precheck);
+  use delete;
+  use action Activate;
+  use action prepare;
+  use action edit;
+  use action discard;
+  use action resume;
+
+ use action copyTravel;
+  use association _Booking { create; with draft;}
+  use association _Attachment { create; with draft;}
+}
+
+define behavior for ZSTT_VT_BOOKING_PROCESSOR alias Booking
+{
+  use update;
+  use delete;
+
+  use association _Travel{ with draft;}
+  use association _BookingSupplement { create; with draft;}
+}
+
+define behavior for ZSTT_VT_BOOKSUPPL_PROCESSOR alias BookingSuppl
+{
+  use update;
+  use delete;
+
+  use association _Travel{ with  draft;}
+  use association _Booking{ with  draft;}
+}
+define behavior for ZSTT_VT_ATTACH_PROCESSOR alias Attachment
+{
+  use update;
+  use delete;
+
+  use association _Travel{ with draft;}
+
+}

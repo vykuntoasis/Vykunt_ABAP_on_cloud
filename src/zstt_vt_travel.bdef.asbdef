@@ -1,0 +1,153 @@
+managed  implementation in class zbp_stt_vt_travel unique ;
+strict ( 2 );
+with draft;
+define behavior for ZSTT_VT_TRAVEL alias Travel
+// make the behaviour pool/implementation for travel
+implementation in class zbp_stt_vt_travel unique
+persistent table /dmo/travel_m
+
+lock master
+total etag LastChangedAt
+// optimistic lock
+  authorization master ( instance )
+  draft table zstt_d_travel
+etag master LastChangedAt
+early numbering
+with additional save
+{
+  create(precheck);
+  update(precheck);
+  delete;
+  association _Booking { create ( features : instance ) ; with draft;}
+  association _Attachment { create; with draft; }
+internal action reCalcTotalPrice ;
+determination calculateTotalprice on modify { create;field BookingFee,CurrencyCode; }
+validation validateHeaderData on save { create; field CustomerId,BeginDate,EndDate ;}
+  field (readonly) TravelId,Totalprice,CreatedAt,CreatedBy,LastChangedAt,LastChangedBy;
+  field ( mandatory ) AgencyId,CustomerId,BeginDate,EndDate,OverallStatus,BookingFee,CurrencyCode;
+   factory   action copyTravel[1];
+   action (features : instance)acceptTravel result[1] $self;
+   action(features : instance) rejectTravel result[1] $self;
+   determine action validationCustomer { validation validateHeaderData ;}
+   side effects {
+     field bookingfee affects field TotalPrice;
+     determine action validationCustomer executed on field CustomerId affects messages;
+   }
+draft action Edit;
+draft action Resume;
+draft action Activate;
+draft action Discard;
+draft determine action Prepare;
+  mapping for /dmo/travel_m{
+   TravelId = travel_id;
+   AgencyId = agency_id;
+   CustomerId = customer_id;
+   TotalPrice = total_price;
+   bookingfee = booking_fee;
+   BeginDate = begin_date;
+   EndDate = end_date;
+   CurrencyCode = currency_code;
+   LastChangedAt = last_changed_at;
+   LastChangedBy = last_changed_by;
+   CreatedAt = created_at;
+   CreatedBy = created_by;
+   OverallStatus = overall_status;
+   Description = description;
+  }
+}
+
+define behavior for ZSTT_VT_BOOKING alias Booking
+implementation in class zbp_stt_vt_booking unique
+persistent table /dmo/booking_m
+draft table zstt_d_book
+lock dependent by _Travel
+authorization dependent by _Travel
+etag master LastChangedAt
+early numbering
+{
+  update;
+  delete;
+  field ( readonly ) TravelId,BookingId;
+  field (mandatory) CarrierId,ConnectionId,FlightDate,BookingStatus;
+  association _Travel { with draft;}
+  association _BookingSupplement { create; with draft; }
+determination calculateTotalprice on modify  {  field FlightPrice,CurrencyCode ;}
+side effects {
+ field FlightPrice affects field _Travel.TotalPrice;
+}
+  mapping for /dmo/booking_m{
+  TravelId = travel_id;
+  BookingId = booking_id;
+  BookingDate = booking_date;
+  CustomerId = customer_id;
+  CarrierId = carrier_id;
+  ConnectionId = connection_id;
+  FlightDate = flight_date;
+  FlightPrice = flight_price;
+  CurrencyCode = currency_code;
+  BookingStatus = booking_status;
+  LastChangedAt = last_changed_at;
+  }
+}
+
+define behavior for ZSTT_VT_BOOKSUPPL alias BookSuppl
+implementation in class zbp_stt_vt_boosuppl unique
+persistent table /dmo/booksuppl_m
+draft table zstt_d_booksp
+lock dependent by _Travel
+authorization dependent by _Travel
+etag master LastChangedAt
+early numbering
+{
+  update;
+  delete;
+  field ( readonly ) BookingId, Travelid,BookingSupplementId;
+  field (mandatory ) Price,SupplementId;
+  association _Travel { with draft;}
+  association _Booking {with draft;}
+  mapping for /dmo/booksuppl_m{
+  TravelId = travel_id;
+  BookingId = booking_id;
+    BookingSupplementId = booking_supplement_id;
+    SupplementId = supplement_id;
+    Price = price;
+   LastChangedAt = last_changed_at;
+    CurrencyCode = currency_code;
+  }
+}
+//define the behavior for child entity
+define behavior for zstt_vt_m_attach alias Attachment
+//make the behavior pool/implemetation for booking
+implementation in class zbp_stt_vt_attach unique
+//telling the framework to insert data in this db table for booking
+persistent table zats_vt_attach
+
+lock dependent by _Travel
+authorization dependent by _Travel
+//draft table for the booking
+draft table zstt_d_attach
+etag master LastChangedAt
+
+{
+  update;
+  delete;
+  field (numbering : managed) id;
+  field ( readonly ) TravelId, id;
+
+  //Reconfirm that booking will create with travel draft
+  association _Travel { with draft; }
+
+  mapping for zats_vt_attach{
+    TravelId = travel_id;
+    Id = Id;
+    Attachment = attachment;
+    Filename = filename;
+    Filetype = filetype;
+    Memo = memo;
+    LastChangedAt = last_changed_at;
+    LocalCreatedAt = local_created_at;
+    LocalCreatedBy = local_created_by;
+    LocalLastChangedAt = local_last_changed_at;
+    LocalLastChangedBy = local_last_changed_by;
+  }
+}
