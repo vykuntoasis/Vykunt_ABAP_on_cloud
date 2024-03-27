@@ -19,8 +19,9 @@ association to parent ZSTT_VT_TRAVEL as _Travel on
     @Semantics.largeObject: {
         mimeType: 'Filetype',
         fileName: 'Filename',
-        contentDispositionPreference: #INLINE
-//        acceptableMimeTypes: [ 'APPLICATION/PDF' ]
+//        contentDispositionPreference: #INLINE
+        contentDispositionPreference: #ATTACHMENT     ,   
+        acceptableMimeTypes: [ 'application/pdf' ]
         
     }
     @EndUserText.label: 'Attachment'
