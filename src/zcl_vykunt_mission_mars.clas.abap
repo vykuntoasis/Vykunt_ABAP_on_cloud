@@ -34,7 +34,6 @@ DATA(lo_earth) = new zcl_earth(  ).
 DATA(lo_iplanet1) = new zcl_planet1(  ).
 DATA(lo_mars) = NEW zcl_mars(  ).
 
-
 LV_text = lo_earth->start_engine(  ).
 APPEND lv_text to itab.
 lv_text = lo_earth->leave_orbit(  ).

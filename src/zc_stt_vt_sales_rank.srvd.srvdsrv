@@ -1,0 +1,4 @@
+@EndUserText.label: 'service definti for v2'
+define service ZC_STT_VT_SALES_RANK {
+  expose ZC_STT_VT_SALES_RANK as salesrankset;
+}

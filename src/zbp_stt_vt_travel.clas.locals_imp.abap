@@ -9,8 +9,9 @@ ENDCLASS.
 CLASS lsc_zstt_vt_travel IMPLEMENTATION.
 
   METHOD save_modified.
+
     data: travel_log_update type STANDARD TABLE OF /dmo/log_travel,
-          final_changes  type STANDARD TABLE OF /dmo/log_travel.
+           final_changes  type STANDARD TABLE OF /dmo/log_travel.
 
 *          APPEND VALUE /dmo/travel( travel_id = ' ' ) to lt_travel.
     if update-travel is not initial.
@@ -112,7 +113,7 @@ CLASS lhc_Travel IMPLEMENTATION.
   ENDIF.
   ls_result = VALUE #(  travelid = ls_travel-travelid
                                    %update = cond #( when lv_auth eq abap_false then if_abap_behv=>auth-unauthorized else
-                                    if_abap_behv=>auth-allowed )
+                                if_abap_behv=>auth-allowed )
 
                                      %action-copyTravel = cond #( when lv_auth eq abap_false then if_abap_behv=>auth-unauthorized else
                                     if_abap_behv=>auth-allowed )
@@ -196,7 +197,8 @@ CLASS lhc_Travel IMPLEMENTATION.
   METHOD earlynumbering_cba_Booking.
   DATA max_booking_id TYPE /dmo/booking_id.
 
-  read ENTITIES OF zstt_vt_travel in LOCAL MODE ENTITY travel by \_booking
+  read ENTITIES OF zstt_vt_travel in LOCAL MODE ENTITY
+  travel by \_booking
   FROM CORRESPONDING #( entities ) LINK DATA(bookings).
 
   loop at entities ASSIGNING FIELD-SYMBOL(<travel_group>) GROUP BY <travel_group>-travelid.
@@ -311,6 +313,8 @@ ENDLOOP.
                                     WITH booksuppl_cba
         MAPPED data(mapped_create).
      mapped-travel = mapped_create-travel.
+
+
 
   ENDMETHOD.
 
@@ -445,6 +449,7 @@ ENDLOOP.
             ""Inform the RAP framework to terminate the create
            append value #( %tky = ls_travel-%tky ) to failed-travel.
             append value #( %tky = ls_travel-%tky
+
                             %element-customerid = if_abap_behv=>mk-on
                             %msg = new /dmo/cm_flight_messages(
                                           textid                = /dmo/cm_flight_messages=>customer_unkown

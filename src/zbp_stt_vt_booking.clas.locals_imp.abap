@@ -60,7 +60,7 @@ ENDLOOP.
   METHOD calculateTotalprice.
 
   DATA travel_ids TYPE STANDARD TABLE OF zstt_vt_travel_processor WITH UNIQUE HASHED KEY key components TravelId.
-  travel_ids = CORRESPONDING #(  keys discarding duplicates mapping TravelId = travelid ).
+  travel_ids = CORRESPONDING #(  keys discarding duplicates mapping TravelId = TravelId ).
 
 MODIFY ENTITIES OF zstt_vt_travel in LOCAL MODE
   ENTITY travel

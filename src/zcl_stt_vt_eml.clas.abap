@@ -35,7 +35,7 @@ CLASS zcl_stt_vt_eml IMPLEMENTATION.
    DATA(lv_customer) = '000697'.
    MODIFY ENTITIES OF zstt_vt_travel
    ENTITY travel
-   CREATE FIELDS ( Travelid Agencyid Currencycode begindate enddate Description overallstatus  )
+   CREATE FIELDS ( Agencyid Currencycode begindate enddate Description overallstatus  )
    with value  #(
        (  %cid = 'anubhav'
       Travelid = '00013347'

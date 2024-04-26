@@ -121,7 +121,6 @@ define behavior for zstt_vt_m_attach alias Attachment
 implementation in class zbp_stt_vt_attach unique
 //telling the framework to insert data in this db table for booking
 persistent table zats_vt_attach
-
 lock dependent by _Travel
 authorization dependent by _Travel
 //draft table for the booking

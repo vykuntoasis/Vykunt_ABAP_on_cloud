@@ -1,4 +1,4 @@
-@EndUserText.label: 'procesor projet layer'
+ @EndUserText.label: 'procesor projet layer'
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @Metadata.allowExtensions: true
 define root view entity ZSTT_VT_TRAVEL_PROCESSOR as projection on ZSTT_VT_TRAVEL
@@ -35,7 +35,7 @@ define root view entity ZSTT_VT_TRAVEL_PROCESSOR as projection on ZSTT_VT_TRAVEL
     /* Associations */
     _agency,
     _Booking:redirected to composition child ZSTT_VT_BOOKING_PROCESSOR,
-    _Attachment: redirected to composition child Zstt_vt_Attach_PROCESSOR,
+    _Attachment: redirected to composition child ZSTT_VT_ATTACH_PROCESSOR,
     _Currency,
     _Customer,
     _Overallstatus,

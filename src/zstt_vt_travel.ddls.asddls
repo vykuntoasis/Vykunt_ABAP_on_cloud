@@ -4,7 +4,7 @@ define root view entity ZSTT_VT_TRAVEL as select from /dmo/travel_m
 
 composition[0..*] of ZSTT_VT_BOOKING as _Booking
 --Composition child for travel viz attachment
-composition[0..*] of zstt_vt_m_attach as _Attachment
+composition[0..*] of ZSTT_VT_M_ATTACH as _Attachment
 association[1] to /DMO/I_Agency as _agency on
 $projection.AgencyId = _agency.AgencyID
 association[1] to /DMO/I_Customer as _Customer on
@@ -25,6 +25,7 @@ $projection.OverallStatus = _Overallstatus.OverallStatus
     @Semantics.amount.currencyCode: 'CurrencyCode'
     total_price as TotalPrice,
     currency_code as CurrencyCode,
+   
     description as Description,
     overall_status as OverallStatus,
     @Semantics.user.createdBy: true

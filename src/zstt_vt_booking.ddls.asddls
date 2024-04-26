@@ -1,4 +1,4 @@
-@AbapCatalog.viewEnhancementCategory: [#NONE]
+ @AbapCatalog.viewEnhancementCategory: [#NONE]
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'BOOKING CHILD entity'
 @Metadata.ignorePropagatedAnnotations: true
@@ -8,7 +8,7 @@
     dataClass: #MIXED
 }
 define view entity ZSTT_VT_BOOKING as select from /dmo/booking_m
-composition[0..*] of ZSTT_VT_BOOKSUPPL AS _BookingSupplement
+composition[0..*] of ZSTT_VT_BOOKSUPPL as _BookingSupplement
 
 association to parent ZSTT_VT_TRAVEL as _Travel on
 $projection.TravelId = _Travel.TravelId

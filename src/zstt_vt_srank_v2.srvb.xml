@@ -4,9 +4,9 @@
   <asx:values>
    <SRVB>
     <METADATA>
-     <NAME>ZSTT_VT_SB_V2_PROCESSOR</NAME>
+     <NAME>ZSTT_VT_SRANK_V2</NAME>
      <TYPE>SRVB/SVB</TYPE>
-     <DESCRIPTION>3222222226service bingin</DESCRIPTION>
+     <DESCRIPTION>V2 data binding</DESCRIPTION>
      <LANGUAGE>EN</LANGUAGE>
      <LINKS>
       <item>
@@ -15,7 +15,7 @@
        <TITLE>Historic versions</TITLE>
       </item>
       <item>
-       <HREF>/sap/bc/adt/businessservices/odatav2/ZSTT_VT_SB_V2_PROCESSOR</HREF>
+       <HREF>/sap/bc/adt/businessservices/odatav2/ZSTT_VT_SRANK_V2</HREF>
        <REL>http://www.sap.com/categories/odatav2</REL>
        <TYPE>application/vnd.sap.adt.businessservices.odatav2.v2+xml</TYPE>
        <TITLE>ODATAV2</TITLE>
@@ -39,7 +39,7 @@
        <TITLE>SemanticVersion</TITLE>
       </item>
       <item>
-       <HREF>./zstt_vt_sb_v2_processor</HREF>
+       <HREF>./zstt_vt_srank_v2</HREF>
        <REL>http://www.sap.com/adt/relations/source</REL>
        <TYPE>text/html</TYPE>
        <TITLE>Landing Page (HTML)</TITLE>
@@ -50,21 +50,21 @@
     </METADATA>
     <CONTENT>
      <BIND_TYPE_IMPL>
-      <NAME>ZSTT_VT_SB_V2_PROCESSOR</NAME>
+      <NAME>ZSTT_VT_SRANK_V2</NAME>
      </BIND_TYPE_IMPL>
      <BIND_TYPE>ODATA</BIND_TYPE>
      <BIND_TYPE_VERSION>V2</BIND_TYPE_VERSION>
      <SERVICES>
       <item>
-       <SERVICE_NAME>ZSTT_VT_SB_V2_PROCESSOR</SERVICE_NAME>
+       <SERVICE_NAME>ZSTT_VT_SRANK_V2</SERVICE_NAME>
        <SERVICE_CONTENT>
         <item>
          <SERVICE_VERSION>0001</SERVICE_VERSION>
          <RELEASE_STATE>NOT_RELEASED</RELEASE_STATE>
          <SRVD_REF>
-          <URI>/sap/bc/adt/ddic/srvd/sources/zstt_vt_sd_v2</URI>
+          <URI>/sap/bc/adt/ddic/srvd/sources/zc_stt_vt_sales_rank</URI>
           <TYPE>SRVD/SRV</TYPE>
-          <NAME>ZSTT_VT_SD_V2</NAME>
+          <NAME>ZC_STT_VT_SALES_RANK</NAME>
          </SRVD_REF>
          <BIND_TYPE_DATA>
           <CONTENT>

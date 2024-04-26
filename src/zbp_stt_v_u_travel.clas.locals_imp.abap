@@ -45,6 +45,7 @@ ENDCLASS.
 CLASS lhc_Travel IMPLEMENTATION.
 
   METHOD get_instance_features.
+
   ENDMETHOD.
 
   METHOD get_instance_authorizations.
@@ -343,9 +344,12 @@ CLASS lsc_ZSTT_V_U_TRAVEL IMPLEMENTATION.
   METHOD check_before_save.
   ""checks
     ""if check fails - BAPI_TRANSACTION_ROLLBACK
+
+
   ENDMETHOD.
 
   METHOD save.
+
   /dmo/cl_flight_legacy=>get_instance(  )->save( ).
   ENDMETHOD.
 
